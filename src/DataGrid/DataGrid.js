@@ -10,12 +10,11 @@ const categories = [...new Set(data.map(({ category }) => category))]
 const DataGrid = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0])
 
-  const setCategory = () => (category) => {setSelectedCategory(category)}
+  const setCategory = (event) => {setSelectedCategory(event.target.name)}
 
   return (
     <Box>
       <Heading size="1xl">Click a button to select a category</Heading>
-      
       <ButtonGroup>
         {categories.map((category) => (
           <Button
@@ -23,13 +22,14 @@ const DataGrid = () => {
             colorScheme="teal"
             variant={selectedCategory === category ? "solid" : "outline"}
             key={category}
+            name={category}
           >
             {category}
           </Button>
         ))}
       </ButtonGroup>
 
-      <Detail selectedCategory={selectedCategory} />
+      <Detail selectedCategory={selectedCategory} key={selectedCategory}/>
     </Box>
   )
 }

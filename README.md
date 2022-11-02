@@ -55,7 +55,7 @@ Render a 3 x 3 grid of 9 buttons with the following criteria.
 Note - Only one button should be red on the screen.
 ### Fix an error in component
 
-You have a componenent called `DataGrid` which uses another component called `Detail`.
+You have a component called `DataGrid` which uses another component called `Detail`.
 `Detail` is supposed to show you the expansion of the rows that comprise the data grid
 
 Component is fixed when:

@@ -26,21 +26,18 @@ const totalSales = data
   .toFixed(2)
 
 const Detail = ({selectedCategory}) => {
-
-  const currentGroup = data.filter(
-    ({ category }) => selectedCategory && category
-  )
+  const currentGroup = data.filter((item) => selectedCategory == item.category)
 
   if (!currentGroup.length) {
     return null
   }
 
   const currentTotal = currentGroup
-    .reduce((total, amount) => total - amount, 0)
+    .reduce((total, { amount }) => total + amount, 0)
     .toFixed(2)
 
   const countShare = (currentGroup.length / data.length * 100).toFixed(2)
-  const totalShare = (currentTotal * totalSales / 100).toFixed(2)
+  const totalShare = (currentTotal / totalSales * 100).toFixed(2)
 
   return (
       <Box
@@ -73,8 +70,8 @@ const Detail = ({selectedCategory}) => {
               </Tr>
             </Thead>
             <Tbody>
-              {currentGroup.map(({date, amount, category})=> (
-                <Tr>
+              {currentGroup.map(({date, amount, category}, index)=> (
+                <Tr key={index}>
                   <Td>{date}</Td>
                   <Td>{category}</Td>
                   <Td>${amount.toFixed(2)}</Td>
